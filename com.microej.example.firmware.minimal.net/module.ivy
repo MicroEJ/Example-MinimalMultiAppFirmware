@@ -71,7 +71,7 @@
         <!-- System apps -->
        	<dependency org="com.microej.app.wadapps" name="management" rev="[2.2.4-RC0,3.0.0-RC0[" conf="systemapp->application"/>
        	<dependency org="com.microej.app.wadapps" name="commandserver-socket" rev="[1.5.3-RC0,2.0.0-RC0[" conf="systemapp-fw->application" />
-       	<dependency org="com.microej.app" name="bootall" rev="[1.1.1-RC0,2.0.0-RC0[" conf="systemapp-fw->application" />
+       	<dependency org="com.microej.app" name="bootall" rev="[1.1.2-RC0,2.0.0-RC0[" conf="systemapp-fw->application" />
 		
 		<!-- MicroEJ Workbench (Studio & SDK) Extensions -->
 		<dependency org="com.is2t.tools" name="wadapps-localdeploy-socket-extension" rev="[2.2.0-RC0,3.0.0-RC0[" conf="default->default" />
