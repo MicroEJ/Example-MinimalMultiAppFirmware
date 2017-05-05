@@ -54,7 +54,6 @@
         <dependency org="ej.library.util" name="filemanager-ram" rev="[1.0.0-RC0,2.0.0-RC0[" />
        	<dependency org="com.microej.library.wadapps.kernel" name="common-impl" rev="[3.0.0-RC0,4.0.0-RC0[" />
        	<dependency org="com.microej.library.wadapps" name="admin-kf-default" rev="[1.2.0-RC0,2.0.0-RC0[" />
-        <dependency org="com.microej.library.wadapps" name="connectivity" rev="[1.0.0-RC0,2.0.0-RC0[" />
         <dependency org="com.microej.library.wadapps" name="standalone" rev="[2.0.0-RC0,3.0.0-RC0[" conf="vdruntime->default"/>
 
         <!--
@@ -66,7 +65,6 @@
         <dependency org="com.microej.kernelapi" name="net" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="wadapps" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="components" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
-        <dependency org="com.microej.kernelapi" name="connectivity" rev="[1.1.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
 
         <!-- System apps -->
        	<dependency org="com.microej.app.wadapps" name="management" rev="[2.2.5-RC0,3.0.0-RC0[" conf="systemapp->application"/>
