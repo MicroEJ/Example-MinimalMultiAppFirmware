@@ -74,6 +74,7 @@
 		
 		<!-- MicroEJ Workbench (Studio & SDK) Extensions -->
 		<dependency org="com.is2t.tools" name="wadapps-localdeploy-socket-extension" rev="[2.2.0-RC0,3.0.0-RC0[" conf="default->default" />
+		<dependency org="com.is2t.tools" name="wadapps-localdeploy-wpk-socket-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
 		<dependency org="com.is2t.tools" name="wadapps-console-socket-extension" rev="[1.4.0-RC0,2.0.0-RC0[" conf="default->default" />
 		<dependency org="com.is2t.tools" name="application-repository-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
         
