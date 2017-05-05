@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=com.microej.demo.firmware.minimal.net&amp;ivyXmlPath=module.ivy&amp;confs=*"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=com.microej.example.firmware.minimal.net&amp;ivyXmlPath=module.ivy&amp;confs=*"/>
 	<classpathentry kind="src" path="src-adpgenerated/services-bundles/java">
 		<attributes>
 			<attribute name="addonProcessorKind" value="generatedJava"/>
