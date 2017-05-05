@@ -7,11 +7,12 @@
 
 package com.microej.demo.firmware;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.microej.kf.util.security.KernelSecurityManager;
-import com.microej.wadapps.connectivity.WadappsConnectivityManager;
 import com.microej.wadapps.kernel.impl.AbstractKernelStartup;
 
-import android.net.ConnectivityManager;
 import ej.kf.Feature;
 import ej.kf.Feature.State;
 import ej.kf.FeatureStateListener;
@@ -22,6 +23,8 @@ import ej.kf.Kernel;
  */
 public class MinimalKernelStartup extends AbstractKernelStartup implements FeatureStateListener {
 
+	private final Map<Feature, String> featureDescriptions;
+
 	/**
 	 * Simple main that starts the kernel.
 	 *
@@ -30,6 +33,13 @@ public class MinimalKernelStartup extends AbstractKernelStartup implements Featu
 	 */
 	public static void main(String[] args) {
 		new MinimalKernelStartup().run();
+	}
+
+	/**
+	 * Instantiates a new minimal kernel.
+	 */
+	public MinimalKernelStartup() {
+		this.featureDescriptions = new HashMap<>();
 	}
 
 	@Override
@@ -42,7 +52,6 @@ public class MinimalKernelStartup extends AbstractKernelStartup implements Featu
 	protected void registerAdditionalKernelServices() {
 		// Registers additional services to expose to applications through the shared registry
 		super.registerAdditionalKernelServices();
-		this.registerKernelToSharedRegistry(ConnectivityManager.class, new WadappsConnectivityManager());
 	}
 
 	@Override
@@ -62,7 +71,14 @@ public class MinimalKernelStartup extends AbstractKernelStartup implements Featu
 		// Allows to react to application state changes. Policies can be implemented here
 		// to react to application start/stop. For example, a critical application that passes to stopped
 		// state can automatically be restarted here.
-		this.log(feature.getName() + " has now state " + feature.getState().toString()); //$NON-NLS-1$
+		State state = feature.getState();
+		if (state == Feature.State.INSTALLED) {
+			this.featureDescriptions.put(feature, feature.getName() + " (" + feature.getVersion() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		this.log(this.featureDescriptions.get(feature) + " has now state " + state.toString()); //$NON-NLS-1$
+		if (state == Feature.State.UNINSTALLED) {
+			this.featureDescriptions.remove(feature);
+		}
 	}
 
 }
