@@ -69,6 +69,7 @@
 
         <!-- System apps -->
        	<dependency org="com.microej.app.wadapps" name="management" rev="[2.2.5-RC0,3.0.0-RC0[" conf="systemapp->application"/>
+       	<dependency org="com.microej.app.wadapps" name="management" rev="[2.2.6-RC0,3.0.0-RC0[" conf="systemapp->application"/>
        	<dependency org="com.microej.app.wadapps" name="commandserver-socket" rev="[1.5.4-RC0,2.0.0-RC0[" conf="systemapp-fw->application" />
 		
 		<!-- MicroEJ Workbench (Studio & SDK) Extensions -->
