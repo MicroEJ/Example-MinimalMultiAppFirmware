@@ -64,6 +64,7 @@
         <dependency org="com.microej.kernelapi" name="bon" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="kf" rev="[2.0.0-RC0,3.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="net" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
+        <dependency org="com.microej.kernelapi" name="net" rev="[1.2.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="wadapps" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="components" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
 
