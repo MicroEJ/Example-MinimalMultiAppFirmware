@@ -54,6 +54,7 @@
         <dependency org="ej.library.util" name="filemanager-ram" rev="[1.0.0-RC0,2.0.0-RC0[" />
        	<dependency org="com.microej.library.wadapps.kernel" name="common-impl" rev="[3.0.0-RC0,4.0.0-RC0[" />
        	<dependency org="com.microej.library.wadapps" name="admin-kf-default" rev="[1.2.0-RC0,2.0.0-RC0[" />
+       	<dependency org="com.microej.library.wadapps" name="admin-kf-default" rev="[2.0.0-RC0,3.0.0-RC0[" />
         <dependency org="com.microej.library.wadapps" name="standalone" rev="[2.0.0-RC0,3.0.0-RC0[" conf="vdruntime->default"/>
 
         <!--
