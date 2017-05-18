@@ -53,7 +53,6 @@
        	<dependency org="ej.library.wadapps" name="framework" rev="[1.0.0-RC0,2.0.0-RC0[" />
         <dependency org="ej.library.util" name="filemanager-ram" rev="[1.0.0-RC0,2.0.0-RC0[" />
        	<dependency org="com.microej.library.wadapps.kernel" name="common-impl" rev="[3.0.0-RC0,4.0.0-RC0[" />
-       	<dependency org="com.microej.library.wadapps" name="admin-kf-default" rev="[1.2.0-RC0,2.0.0-RC0[" />
        	<dependency org="com.microej.library.wadapps" name="admin-kf-default" rev="[2.0.0-RC0,3.0.0-RC0[" />
         <dependency org="com.microej.library.wadapps" name="standalone" rev="[2.0.0-RC0,3.0.0-RC0[" conf="vdruntime->default"/>
 
@@ -63,13 +62,11 @@
         <dependency org="com.microej.kernelapi" name="edc" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="bon" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="kf" rev="[2.0.0-RC0,3.0.0-RC0[" conf="kernelapi->default"/>
-        <dependency org="com.microej.kernelapi" name="net" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="net" rev="[1.2.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="wadapps" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="components" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
 
         <!-- System apps -->
-       	<dependency org="com.microej.app.wadapps" name="management" rev="[2.2.5-RC0,3.0.0-RC0[" conf="systemapp->application"/>
        	<dependency org="com.microej.app.wadapps" name="management" rev="[2.2.6-RC0,3.0.0-RC0[" conf="systemapp->application"/>
        	<dependency org="com.microej.app.wadapps" name="commandserver-socket" rev="[1.5.4-RC0,2.0.0-RC0[" conf="systemapp-fw->application" />
 		
