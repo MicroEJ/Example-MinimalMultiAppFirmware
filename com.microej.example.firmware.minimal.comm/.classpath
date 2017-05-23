@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=com.microej.example.firmware.minimal.comm&amp;ivyXmlPath=module.ivy&amp;confs=*&amp;ivySettingsPath=%24%7Bworkspace_loc%3Amicroej-4.1-repository%2Fivysettings.xml%7D&amp;loadSettingsOnDemand=false&amp;ivyUserDir=&amp;propertyFiles=%24%7Bworkspace_loc%3Aeasyant-build-component%2Fivy%2FivyDE.properties%7D%2C%24%7Bworkspace_loc%3Aeasyant-build-component%2Fivy%2FivyDE_windows.properties%7D%2CC%3A%5CUsers%5Caquillet%5CDocuments%5CIS2T%5CivyDE_credentials.properties"/>
+	<classpathentry kind="src" path="src-adpgenerated/services-bundles/java">
+		<attributes>
+			<attribute name="addonProcessorKind" value="generatedJava"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
