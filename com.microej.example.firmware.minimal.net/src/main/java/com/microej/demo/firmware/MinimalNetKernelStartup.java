@@ -21,7 +21,7 @@ import ej.kf.Kernel;
 /**
  * A simple kernel that starts all registered activities when an application is started.
  */
-public class MinimalKernelStartup extends AbstractKernelStartup implements FeatureStateListener {
+public class MinimalNetKernelStartup extends AbstractKernelStartup implements FeatureStateListener {
 
 	private final Map<Feature, String> featureDescriptions;
 
@@ -32,13 +32,13 @@ public class MinimalKernelStartup extends AbstractKernelStartup implements Featu
 	 *            command line arguments.
 	 */
 	public static void main(String[] args) {
-		new MinimalKernelStartup().run();
+		new MinimalNetKernelStartup().run();
 	}
 
 	/**
 	 * Instantiates a new minimal kernel.
 	 */
-	public MinimalKernelStartup() {
+	public MinimalNetKernelStartup() {
 		this.featureDescriptions = new HashMap<>();
 	}
 
@@ -61,21 +61,24 @@ public class MinimalKernelStartup extends AbstractKernelStartup implements Featu
 	}
 
 	@Override
+	@SuppressWarnings("nls")
 	protected void log(String message) {
 		// Message can be redirected to another output, for example to a file or a socket.
-		System.out.println("[MinimalKernel] " + message); //$NON-NLS-1$
+		System.out.println("[MinimalNetKernel] " + message);
 	}
 
 	@Override
+	@SuppressWarnings("nls")
 	public void stateChanged(Feature feature, State previousState) {
 		// Allows to react to application state changes. Policies can be implemented here
 		// to react to application start/stop. For example, a critical application that passes to stopped
 		// state can automatically be restarted here.
 		State state = feature.getState();
-		if (state == Feature.State.INSTALLED) {
-			this.featureDescriptions.put(feature, feature.getName() + " (" + feature.getVersion() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+		if (state == State.INSTALLED
+				|| (!this.featureDescriptions.containsKey(feature) && feature.getState() == State.STARTED)) {
+			this.featureDescriptions.put(feature, feature.getName() + " (" + feature.getVersion() + ")");
 		}
-		this.log(this.featureDescriptions.get(feature) + " has now state " + state.toString()); //$NON-NLS-1$
+		this.log(this.featureDescriptions.get(feature) + " has now state " + state.toString());
 		if (state == Feature.State.UNINSTALLED) {
 			this.featureDescriptions.remove(feature);
 		}
