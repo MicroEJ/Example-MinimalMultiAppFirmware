@@ -42,11 +42,15 @@ It is now time to build your first firmware. Right-click on firmware project, in
 To flash built firmware, open _Run Configurations_ menu, then create a _MicroEJ Tools_ run configuration named `Flash Firmware`. 
 * In _Execution_ tab:
 	* In _Target Platform_, select imported virtual device,
-	* In _Settings_, select `Program with [Flasher Name]` (for example, `ST Link or Segger J-Link`, depending on the platform used to build the firmware),
+	* In _Settings_, select `Program with [Flasher Name]` (for example, `ST Link` or `Segger J-Link`, depending on the platform used to build the firmware),
 	* Set _Output Folder_ to firmware project folder. 
 * In _Configuration_ tab: 
 	* Set __Binary file_ to built firmware file.
 Ensure your board is plugged to your computer, then run the _Flash Firmware_ tool to flash built firmware into your board.
+
+# Next step
+
+Your are now ready to develop application and deploy it using _MicroEJ Tool_ _Local Deployment_ (over socket or COMM depending on the firmware).
 
 # External Resources
 
