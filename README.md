@@ -1,63 +1,124 @@
 <!--
 	Markdown
+	Copyright 2017 IS2T. All rights reserved.
+	Use of this source code is subject to license terms.
 -->
 
 # Overview
 
-This repository provides two MicroEJ Firmware projects, first one using administration command server over _NET API_, other one using administration command server over _COMM API_.
+This repository provides an example of a minimal MicroEJ Multi-App Firmware that features:
+* a default implementation of the Wadapps framework.
+* an administration server for managing the applications lifecycle (INSTALL, START, STOP, UNINSTALL).
+* the exposure of a set of default APIs for applications (`EDC` + a communication channel - `NET` or `ECOM-COMM`).
+* the virtual device configuration including Applications Local Deployment and Wadapps Administration Console tools.
 
-Both firmwares are headless, meaning they do not expose nor use user interfaces (such as GUI, buttons, ...). They are entry points for developers that want, in only two click, build and deploy their first firmware.
- 
+The minimal Multi-App Firmware is declined into two distinct projects, depending on the communication channel used by the administration server:
+* `com.microej.example.firmware.minimal.comm`: communication over TCP/IP network (`NET` API).
+* `com.microej.example.firmware.minimal.net`: communication over a serial link (`ECOM-COMM` API).
+
+The minimal Multi-App Firmware is headless, meaning it does not expose nor use user interfaces (such as GUI, buttons, ...). It is an entry point for developers that want, in only few steps, build their first Multi-App Firmware and test deploying an application on it.
+
 # Requirements
 
-* MicroEJ SDK 4.1.0 or higher,
-* A MicroEJ evaluation platform imported into the MicroEJ repository,
-* A valid evaluation license for imported platform,
-* For _NET_ example, a development board,
-* For _COMM_ example, a development board with a TTL cable plugged in its RX/TX pins.
+* MicroEJ SDK 4.1.1 or higher.
+* A MicroEJ 4.1 Multi-App platform (binary) imported into the MicroEJ repository. Please consult (<http://developer.microej.com>) for a list available evaluation platforms.
+* An activated Evaluation or Production license.
+* For `NET` example, a board connected to the same sub-network than the PC.
+* For `COMM` example, a board with a USB-TTL cable plugged to the PC and connected to RX/TX pins.
 
 # Dependencies
 
 All dependencies are retrieved from _MicroEJ Central Repository 4.1_ (<http://developer.microej.com/ivy/4.1/>) using Apache Ivy. Those dependencies include:
-* A set of foundation libraries, essentials for any firmwares (such as _EDC_ and _KF_ libraries),
-* A foundation library specific to each project, one for each back-end (_NET_ or _COMM_),
-* A set of sandboxed-application-oriented addon libraries (_Wadapps Application Framework_, filesystem back-ends, ...),
-* A firmware bootstrap library, that simplify firmware development,
-* A set of runtime APIs, to expose functionalities to firmware end users,
-* A set of resident applications, that will be linked together with produced firmware,
-* A set of virtual device tools, such as local deployment tools and administration command client.
+* A set of foundation libraries, required for any Multi-App Firmware (such as `EDC` and `KF` libraries).
+* A foundation library specific to each project, depending on the administration server back-end (`NET` or `ECOM-COMM`).
+* Wadapps add-on libraries (_Wadapps Application Framework_, _Storage_ back-ends, ...).
+* A firmware bootstrap library, that simplifies firmware development.
+* A set of APIs exposed to applications.
+* A set of Resident Applications, that are linked together with the Kernel to produce the Multi-App Firmware.
+* A set of Virtual Device tools, such as Local Deployment and Wadapps Administration Console.
 
 # Usage
 
-First of all, clone this Git repository and import firmware projects into a MicroEJ SDK workspace. Two projects should be available:
-* `com.microej.example.firmware.minimal.net`, the project with _NET_ back-end, and
-* `com.microej.example.firmware.minimal.comm`, the project with _COMM_ back-end.
+## Import Firmware Projects
 
-Both projects can be compiled and run the same way. There is little difference between them; main ones are how to administer the firmware from MicroEJ SDK and traces that each firmware prints on standard output. As a consequences, following steps can be applied to _NET_ and _COMM_ firmware examples. 
+Start MicroEJ SDK on an empty workspace and clone this Git repository (`File > Import > Git > Projects From Git`).
 
-Next step is to build a firmware for your evaluation board. This requires to specify, before firmware build, the location of the platform to use to build it. Fortunately, that is easy to accomplish. Go to MicroEJ SDK preferences, in _MicroEJ_ section, _Platforms_ subsection. Put you mouse pointer over the platform you want to use, a tooltip with some information should appear. Press _F2_ to show more information about this platform; its location should now be available in  _Path_ entry; copy it. Open `module.ivy` file from firmware you want to build; you should see some properties already declared in Ivy `info` section. Add another property called `platform-loader.target.platform.dir` and set the path to the platform to use as its value.
+At the end of the process, two projects have been imported:
+  * `com.microej.example.firmware.minimal.net`
+  * `com.microej.example.firmware.minimal.comm`
 
-It is now time to build your first firmware. Right-click on firmware project, in MicroEJ SDK _Package Explorer_ view, then click on _Build With EasyAnt_. Be patient, grab a cup of coffee, build can take 2 or 3 minutes. After successful build, firmware artifact is available in firmware project build folder `target~/artifacts`; depending which example you built, firmware artifact is named `firmware.net.out`or `firmware.comm.out`. A virtual device is also available in the same folder, with same name as the firmware and extension `.jpf`.  Built virtual device can be imported into MicroEJ Repository; this allows to local deploy sandboxed applications on built firmware, or use tools such as the administration console. To import the virtual device, go to MicroEJ SDK preferences, in _MicroEJ_ section, _Platforms_ subsection. Click on _Import_ button, and select virtual device in `artifacts` folder. 
+In the rest of the document, the term `[backend]` has to be replaced with either `net` or `comm` depending on the chosen firmware project.
 
-To flash built firmware, open _Run Configurations_ menu, then create a _MicroEJ Tools_ run configuration named `Flash Firmware`. 
-* In _Execution_ tab:
-	* In _Target Platform_, select imported virtual device,
-	* In _Settings_, select `Program with [Flasher Name]` (for example, `ST Link` or `Segger J-Link`, depending on the platform used to build the firmware),
-	* Set _Output Folder_ to firmware project folder. 
-* In _Configuration_ tab: 
-	* Set __Binary file_ to built firmware file.
-Ensure your board is plugged to your computer, then run the _Flash Firmware_ tool to flash built firmware into your board.
+## Select and Configure the Firmware
 
-# Next step
+In case of the `net` back-end, the project is already configured.
 
-Your are now ready to develop application and deploy it using _MicroEJ Tool_ _Local Deployment_ (over socket or COMM depending on the firmware).
+In case of the `comm` back-end, the COM port on which the administration server will be connected must be set. Please consult the documentation of the selected platform to get the list of available platform COM ports. Edit `com.microej.example.firmware.minimal.comm/build/common.properties` and update with the appropriate value:
 
-# External Resources
+    ej.ecom.com.0.port=[PLATFORM_COM_VALUE]
 
-Our developer website (<http://developer.microej.com>) contains a lot of resources and is a good entry point to find examples, tools and documentation. 
+## Setup a Platform
+
+Before building the firmware, a target platform must be configured in the MicroEJ workspace.
+
+* Go to `Window > Preferences > MicroEJ > Platforms` and put the mouse pointer over the desired platform.
+* A tooltip with some information should appear. Press `F2` to show more information.
+* Select the the platform _Path_ and copy it to the clipboard.
+* Go to `Window > Preferences > Ant > Runtime` and select the `Properties` tab.
+* Click on `Add Property...` button and set a new property named `platform-loader.target.platform.dir` with the platform path pasted from the clipboard.
+
+There are other ways to setup the input platform for building the firmware. Please consult the _Multi-App Firmware Developer's Guide_ for more informations.
+
+## Build the Firmware
+
+* Right-click on the chosen firmware project and select `Build With EasyAnt`. This may take several minutes.
+
+After successful build, the firmware artifacts are available in firmware project build folder `target~/artifacts` and contains:
+* the firmware executable file (`minimal.[backend].out`).
+* the corresponding virtual device (`minimal.[backend].jpf`).
+* the firmware package for the MicroEJ Store (`minimal.[backend].kpk`)
+
+## Program the Firmware on the Device
+
+The procedure to program a firmware is platform specific. Please refer to the platform documentation for the detailed firmware flashing procedure.
+
+To flash the firmware, open `Run Configurations` menu, then create a `MicroEJ Tool` run configuration named `Flash Firmware`.
+* In `Execution` tab:
+	* In `Target Platform`, select the platform used to build the firmware,
+	* In `Settings`, select `Program with [Flasher Tool]` (e.g `ST Link` or `Segger J-Link`),
+	* Set `Output Folder` to firmware project folder.
+* In `Configuration` tab:
+	* Set the application binary file to `target~/artifacts/minimal-[backend].out` file.
+* Click on `Run` and wait until the flashing procedure is terminated.
+
+# Develop and Deploy an Application
+
+Prior to develop an application, the virtual device has to be imported:
+
+* Go to `File > Import > MicroEJ > Platforms, Virtual Devices and Architectures`
+* Browse the file `\target~\artifacts\minimal.[backend].jpf` and put the mouse pointer over the desired platform.
+
+Note that the application development can be done in a dedicated MicroEJ Studio instance (the virtual device can be freely distributed).
+
+To create and deploy a basic application, please refer to the _Sandboxed Application Developer's Guide_ (sections _Background Service Application_ and _Wadapps Administration Console_).
+
+
+# Additional Resources
+
+## Developer Resources
+
+MicroEJ developer web site (<http://developer.microej.com>) is the entry point to find examples, tools and documentation.
 
 Specifically, foundation libraries javadoc can be found at <http://developer.microej.com/javadoc/microej_4.1/foundation/>, and addon libraries (such as _Wadapps Application Framework_) javadoc can be found at <http://developer.microej.com/javadoc/microej_4.1/addons/>.
 
-# Restrictions
+## License
 
 Examples are subject to license agreement. See `LICENSE.txt` in firmware projects.
+
+## Change Log
+
+Please consult `CHANGELOG.md` in firmware projects for the firmware content versioning.
+
+### 1.0.0 (2017 June 1st)
+Features:
+	  - Initial revision for MicroEJ 4.1.
