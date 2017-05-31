@@ -119,6 +119,7 @@ Examples are subject to license agreement. See `LICENSE.txt` in firmware project
 
 Please consult `CHANGELOG.md` in firmware projects for the firmware content versioning.
 
-### 1.0.0 (2017 June 1st)
+### 1.0.0 (June 1st, 2017)
+
 Features:
-	  - Initial revision for MicroEJ 4.1.
+* Initial public revision for MicroEJ 4.1.
