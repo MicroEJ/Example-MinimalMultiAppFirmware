@@ -7,16 +7,27 @@
 
 package com.microej.demo.firmware;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.microej.kf.util.security.KernelSecurityManager;
 import com.microej.wadapps.kernel.impl.AbstractKernelStartup;
 
+import android.net.Network;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
+import ej.bon.Timer;
+import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.kf.Feature;
 import ej.kf.Feature.State;
 import ej.kf.FeatureStateListener;
 import ej.kf.Kernel;
+import ej.net.ConnectivityManager;
+import ej.net.PollerConnectivityManager;
 
 /**
  * A simple kernel that starts all registered activities when an application is started.
@@ -46,6 +57,32 @@ public class MinimalNetKernelStartup extends AbstractKernelStartup implements Fe
 	public void run() {
 		Kernel.addFeatureStateListener(this);
 		super.run();
+		registerLogConnectivity();
+	}
+
+	/**
+	 * Registers a network connectivity callback that logs available network
+	 * interfaces
+	 */
+	private void registerLogConnectivity() {
+		ConnectivityManager connectivityManager = new PollerConnectivityManager(
+				ServiceLoaderFactory.getServiceLoader().getService(Timer.class), 0, 5000);
+		NetworkRequest request = new NetworkRequest.Builder().build();
+		connectivityManager.registerNetworkCallback(request, new ConnectivityManager.NetworkCallback() {
+			@Override
+			public void onAvailable(Network network) {
+				logNetworkInterfaces();
+			}
+
+			@Override
+			public void onLost(Network network) {
+				logNetworkInterfaces();
+			}
+		});
+		NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+		if (info.isConnected()) {
+			logNetworkInterfaces();
+		}
 	}
 
 	@Override
@@ -81,6 +118,42 @@ public class MinimalNetKernelStartup extends AbstractKernelStartup implements Fe
 		this.log(this.featureDescriptions.get(feature) + " has now state " + state.toString());
 		if (state == Feature.State.UNINSTALLED) {
 			this.featureDescriptions.remove(feature);
+		}
+	}
+
+	/**
+	 * Logs the list of registered {@link NetworkInterface}.
+	 */
+	private void logNetworkInterfaces() {
+		this.log("Available Network interfaces:");
+		boolean noInterface = true;
+		Enumeration<NetworkInterface> interfaces = null;
+		try {
+			interfaces = NetworkInterface.getNetworkInterfaces();
+		} catch (SocketException e) {
+		}
+		if (interfaces != null) {
+			while (interfaces.hasMoreElements()) {
+				NetworkInterface iface = interfaces.nextElement();
+				// filters out 127.0.0.1 and inactive interfaces
+				try {
+					if (!iface.isUp() || iface.isLoopback()) {
+						continue;
+					}
+				} catch (SocketException e) {
+					continue;
+				}
+
+				Enumeration<InetAddress> addresses = iface.getInetAddresses();
+				while (addresses.hasMoreElements()) {
+					noInterface = false;
+					InetAddress addr = addresses.nextElement();
+					this.log("- " + addr.getHostAddress());
+				}
+			}
+		}
+		if (noInterface) {
+			this.log("(none)");
 		}
 	}
 
