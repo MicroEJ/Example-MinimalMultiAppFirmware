@@ -12,9 +12,6 @@
     	<ea:property name="virtual.device.name" value="Virtual Device Minimal NET" />
     	<ea:property name="runtime.api.name" value="Minimal Net Runtime" />
     	<ea:property name="runtime.api.version" value="1.0.0" />
-    	<!--
-    		Use property 'platform-loader.target.platform.dir' to set the platform to use. or uncomment the platform dependency (see below).
-    	-->
     </info>
     
     <configurations defaultconfmapping="default->default;provided->provided">
@@ -45,7 +42,7 @@
        	<dependency org="ej.api" name="kf" rev="[1.4.0-RC0,2.0.0-RC0[" conf="provided" />
        	<dependency org="ej.api" name="net" rev="[1.1.0-RC0,2.0.0-RC0[" conf="provided" />
        	
-       	<!-- Addon Libraries, with different configuration mappings:
+       	<!-- Add-on Libraries, with different configuration mappings:
 			- some are used in the firmware only (conf="default")
 			- some are used in simulation only (conf="vdruntime->default") 
 			- some are used in both firmware and simulation only (conf="default,vdruntime->default")
@@ -66,7 +63,7 @@
         <dependency org="com.microej.kernelapi" name="wadapps" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="components" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
 
-        <!-- System apps -->
+        <!-- System Apps -->
        	<dependency org="com.microej.app.wadapps" name="management" rev="[2.2.6-RC0,3.0.0-RC0[" conf="systemapp->application"/>
        	<dependency org="com.microej.app.wadapps" name="commandserver-socket" rev="[1.5.4-RC0,2.0.0-RC0[" conf="systemapp-fw->application" />
 		
@@ -75,10 +72,5 @@
 		<dependency org="com.is2t.tools" name="wadapps-localdeploy-wpk-socket-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
 		<dependency org="com.is2t.tools" name="wadapps-console-socket-extension" rev="[1.4.0-RC0,2.0.0-RC0[" conf="default->default" />
 		<dependency org="com.is2t.tools" name="application-repository-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
-        
-        <!-- Platform -->
-        <!--
-       		<dependency org="myorg" name="myname" rev="[0.0.0-RC0,1.0.0-RC0[" conf="platform->myconf" transitive="false"/>
-   		-->
     </dependencies>
 </ivy-module>

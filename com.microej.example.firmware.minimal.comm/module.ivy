@@ -12,16 +12,6 @@
     	<ea:property name="virtual.device.name" value="Virtual Device Minimal COMM" />
     	<ea:property name="runtime.api.name" value="Minimal Comm Runtime" />
     	<ea:property name="runtime.api.version" value="1.0.0" />
-    	<!--
-    		Use property 'platform-loader.target.platform.dir' to set the platform to use. or uncomment the platform dependency (see below).
-    	-->
-		<ea:property name="platform-launcher.custom.properties.dirname" value="${firmware.name}-${target.platform.name}-${firmware.UID}" />
-		<ea:property name="wadapps-publisher.apilvlid" value="58bfca6bd741e044004dda01"/>
-		<ea:property name="wadapps-publisher.baseurl" value="https://preprodstore.microej.com"/>
-		<ea:property name="wadapps-publisher.firmwareHref" value="http://developer.microej.com/getting-started.html"/>
-		<ea:property name="wadapps-publisher.devicerefid" value="57557157e938892f0070d65a"/>
-		<ea:property name="wadapps-publisher.login" value="STMicroElectronics"/>
-		<ea:property name="wadapps-publisher.password" value="bb588f984771fee71731b52dc6deae9e"/>
     </info>
     
     <configurations defaultconfmapping="default->default;provided->provided">
@@ -75,7 +65,7 @@
         <dependency org="com.microej.kernelapi" name="wadapps" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
         <dependency org="com.microej.kernelapi" name="components" rev="[1.0.0-RC0,2.0.0-RC0[" conf="kernelapi->default"/>
 
-        <!-- System apps -->
+        <!-- System Apps -->
        	<dependency org="com.microej.app.wadapps" name="management" rev="[2.2.6-RC0,3.0.0-RC0[" conf="systemapp->application"/>
        	<dependency org="com.microej.app.wadapps" name="commandserver-comm" rev="[1.3.2-RC0,2.0.0-RC0[" conf="systemapp-fw->application" />
 		
@@ -84,10 +74,5 @@
 		<dependency org="com.is2t.tools" name="wadapps-localdeploy-wpk-comm-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
 		<dependency org="com.is2t.tools" name="wadapps-console-comm-extension" rev="[1.1.0-RC0,2.0.0-RC0[" conf="default->default" />
 		<dependency org="com.is2t.tools" name="application-repository-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
-        
-        <!-- Platform -->
-        <!--
-       		<dependency org="myorg" name="myname" rev="[0.0.0-RC0,1.0.0-RC0[" conf="platform->myconf" transitive="false"/>
-   		-->
     </dependencies>
 </ivy-module>
