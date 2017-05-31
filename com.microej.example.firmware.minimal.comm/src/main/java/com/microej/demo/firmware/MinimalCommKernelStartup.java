@@ -50,12 +50,7 @@ public class MinimalCommKernelStartup extends AbstractKernelStartup implements F
 	public void run() {
 		Kernel.addFeatureStateListener(this);
 		super.run();
-		this.log("Available COM ports:");
-		Iterator<CommPort> ecomPorts = DeviceManager.list(CommPort.class);
-		while (ecomPorts.hasNext()) {
-			CommPort p = ecomPorts.next();
-			this.log("- " + p.getName().toUpperCase() + " (baudrate=115200)");
-		}
+		logAvailableCOMMPorts();
 	}
 
 	@Override
@@ -91,6 +86,23 @@ public class MinimalCommKernelStartup extends AbstractKernelStartup implements F
 		this.log(this.featureDescriptions.get(feature) + " has now state " + state.toString());
 		if (state == Feature.State.UNINSTALLED) {
 			this.featureDescriptions.remove(feature);
+		}
+	}
+
+	/**
+	 * Logs the list of registered {@link CommPort}
+	 */
+	private void logAvailableCOMMPorts() {
+		this.log("Available COM ports:");
+		boolean noCommPort = true;
+		Iterator<CommPort> ecomPorts = DeviceManager.list(CommPort.class);
+		while (ecomPorts.hasNext()) {
+			noCommPort = false;
+			CommPort p = ecomPorts.next();
+			this.log("- " + p.getName().toUpperCase() + " (baudrate=115200)");
+		}
+		if (noCommPort) {
+			this.log("(none)");
 		}
 	}
 
