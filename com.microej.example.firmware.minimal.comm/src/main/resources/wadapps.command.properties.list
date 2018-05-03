@@ -1,0 +1,19 @@
+# Copyright 2018 IS2T. All rights reserved.
+# IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+
+# are signed commands are supported ? (requires a command-unwrapper implementation)
+com.microej.wadapps.allowSignedCommands=false
+
+# are unsigned commands are supported ?
+com.microej.wadapps.allowUnsignedCommands=true
+
+# is installing an already installed app considered as an update ?
+# (this is applicable only to signed commands)
+com.microej.wadapps.allowUpdateOnInstall=true
+
+# are self-signed certiicates trusted by default ? (used for local deploy)
+com.microej.security.command.trustSelfSignedCertificates=false
+
+# what is the authorized DN (in hex form) for the signing authority ?
+# this value is the DN of the MicroEJ evaluation Stores
+# com.microej.security.command.authorized.DN=#303D313B303906035504030C32496E647573747269616C20536D61727420536F66747761726520546563686E6F6C6F677920576164617070732053746F7265
