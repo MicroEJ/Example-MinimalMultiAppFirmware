@@ -8,13 +8,19 @@
 package com.microej.demo.firmware;
 
 import java.net.InetAddress;
+import java.net.NetPermission;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.SocketPermission;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PropertyPermission;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.microej.kf.util.security.KernelSecurityManager;
+import com.microej.kf.util.security.LoggingPermissionCheckDelegate;
 import com.microej.wadapps.kernel.impl.AbstractKernelStartup;
 
 import android.net.Network;
@@ -94,7 +100,14 @@ public class MinimalNetKernelStartup extends AbstractKernelStartup implements Fe
 	@Override
 	protected KernelSecurityManager createSecurityManager() {
 		// A security manager can be defined here for the whole kernel.
-		return super.createSecurityManager();
+		KernelSecurityManager sec = super.createSecurityManager();
+		LoggingPermissionCheckDelegate permLogger = new LoggingPermissionCheckDelegate(Logger.getLogger("security"),
+				Level.INFO);
+		sec.setFeaturePermissionDelegate(PropertyPermission.class, permLogger);
+		sec.setFeaturePermissionDelegate(RuntimePermission.class, permLogger);
+		sec.setFeaturePermissionDelegate(NetPermission.class, permLogger);
+		sec.setFeaturePermissionDelegate(SocketPermission.class, permLogger);
+		return sec;
 	}
 
 	@Override
