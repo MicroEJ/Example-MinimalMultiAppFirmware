@@ -11,6 +11,7 @@ import java.net.InetAddress;
 import java.net.NetPermission;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.SocketPermission;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,8 +104,9 @@ public class MinimalNetKernelStartup extends AbstractKernelStartup implements Fe
 		LoggingPermissionCheckDelegate permLogger = new LoggingPermissionCheckDelegate(Logger.getLogger("security"),
 				Level.INFO);
 		sec.setFeaturePermissionDelegate(PropertyPermission.class, permLogger);
-		sec.setFeaturePermissionDelegate(NetPermission.class, permLogger);
 		sec.setFeaturePermissionDelegate(RuntimePermission.class, permLogger);
+		sec.setFeaturePermissionDelegate(NetPermission.class, permLogger);
+		sec.setFeaturePermissionDelegate(SocketPermission.class, permLogger);
 		return sec;
 	}
 
