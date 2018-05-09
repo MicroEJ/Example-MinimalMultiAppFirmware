@@ -11,7 +11,7 @@ com.microej.wadapps.allowUnsignedCommands=true
 # (this is applicable only to signed commands)
 com.microej.wadapps.allowUpdateOnInstall=true
 
-# are self-signed certiicates trusted by default ? (used for local deploy)
+# are self-signed certificates trusted by default ? (used for local deploy)
 com.microej.security.command.trustSelfSignedCertificates=false
 
 # what is the authorized DN (in hex form) for the signing authority ?
