@@ -1,7 +1,7 @@
 <!--
    Ivy
 
-   Copyright 2017 IS2T. All rights reserved.
+   Copyright 2017-2018 IS2T. All rights reserved.
    Use of this source code is subject to license terms.
  -->
  
@@ -73,7 +73,9 @@
 		<!-- MicroEJ Workbench (Studio & SDK) Extensions -->
 		<dependency org="com.is2t.tools" name="wadapps-localdeploy-comm-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
 		<dependency org="com.is2t.tools" name="wadapps-localdeploy-wpk-comm-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
+		<dependency org="com.is2t.tools" name="wadapps-localdeploy-resident-launcher" rev="1.1.3" conf="default->default"/>
 		<dependency org="com.is2t.tools" name="wadapps-console-comm-extension" rev="[1.1.0-RC0,2.0.0-RC0[" conf="default->default" />
 		<dependency org="com.is2t.tools" name="application-repository-extension" rev="[1.0.0-RC0,2.0.0-RC0[" conf="default->default" />
+		<dependency org="com.is2t.tools" name="wadapps-firmware-customizer-extension" rev="1.2.0" conf="default->default" />
     </dependencies>
 </ivy-module>
