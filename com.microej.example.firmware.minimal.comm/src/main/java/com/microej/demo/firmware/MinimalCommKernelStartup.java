@@ -10,12 +10,18 @@ package com.microej.demo.firmware;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.PropertyPermission;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.microej.kf.util.security.KernelSecurityManager;
+import com.microej.kf.util.security.LoggingPermissionCheckDelegate;
 import com.microej.wadapps.kernel.impl.AbstractKernelStartup;
 
 import ej.ecom.DeviceManager;
+import ej.ecom.DeviceManagerPermission;
 import ej.ecom.io.CommPort;
+import ej.ecom.io.ConnectionPermission;
 import ej.kf.Feature;
 import ej.kf.Feature.State;
 import ej.kf.FeatureStateListener;
@@ -62,7 +68,14 @@ public class MinimalCommKernelStartup extends AbstractKernelStartup implements F
 	@Override
 	protected KernelSecurityManager createSecurityManager() {
 		// A security manager can be defined here for the whole kernel.
-		return super.createSecurityManager();
+		KernelSecurityManager sec = super.createSecurityManager();
+		LoggingPermissionCheckDelegate permLogger = new LoggingPermissionCheckDelegate(Logger.getLogger("security"),
+				Level.INFO);
+		sec.setFeaturePermissionDelegate(PropertyPermission.class, permLogger);
+		sec.setFeaturePermissionDelegate(RuntimePermission.class, permLogger);
+		sec.setFeaturePermissionDelegate(ConnectionPermission.class, permLogger);
+		sec.setFeaturePermissionDelegate(DeviceManagerPermission.class, permLogger);
+		return sec;
 	}
 
 	@Override

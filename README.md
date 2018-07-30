@@ -1,9 +1,3 @@
-<!--
-	Markdown
-	Copyright 2017 IS2T. All rights reserved.
-	Use of this source code is subject to license terms.
--->
-
 # Overview
 
 This repository provides an example of a minimal MicroEJ Multi-App Firmware that features:
@@ -105,7 +99,7 @@ To create and deploy a basic application, please refer to the _Sandboxed Applica
 
 # Additional Resources
 
-## Developer Web Site
+## Developer Resources
 
 MicroEJ developer web site (<http://developer.microej.com>) is the entry point to find examples, tools and documentation.
 
@@ -115,11 +109,8 @@ Specifically, foundation libraries javadoc can be found at <http://developer.mic
 
 Examples are subject to license agreement. See `LICENSE.txt` in firmware projects.
 
-## Change Log
-
-Please consult `CHANGELOG.md` in firmware projects for the firmware content versioning.
-
-### 1.0.0 (June 1st, 2017)
-
-Features:
-* Initial public revision for MicroEJ 4.1.
+<!--
+	Markdown
+	Copyright 2017-2018 IS2T. All rights reserved.
+	Use of this source code is subject to license terms.
+-->
