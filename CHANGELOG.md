@@ -1,6 +1,6 @@
 Please consult `CHANGELOG.md` in firmware projects for the firmware content versioning.
 
-# 1.1.0 (30/07/2017)
+# 1.1.0 (30/07/2018)
 Features:
 * Update dependencies
 * Add permission
